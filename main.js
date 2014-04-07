@@ -91,95 +91,173 @@
 
 // ------------------------------------------SOLUTION USING OBJECTS-----------------------------------------
 
-var numVictims;
+// var numVictims;
 
-while(isNaN(numVictims)){
+// while(isNaN(numVictims)){
 
-numVictims = prompt("How many disaster victims do you have? ");
+// numVictims = prompt("How many disaster victims do you have? ");
 
-if(isNaN(numVictims)){
-	alert("Please use numerals.");
-}
+// if(isNaN(numVictims)){
+// 	alert("Please use numerals.");
+// }
 
-!isNaN(+numVictims);
-}
+// !isNaN(+numVictims);
+// }
 
-// console.log(numVictims);
+// // console.log(numVictims);
 
-// Retrieve and Store Victim Information
+// // Retrieve and Store Victim Information
 
-// Declare empty victim arrays
-	var victimArray = [];
+// // Declare empty victim arrays
+// 	var victimArray = [];
 
-for(var i=1; i<=numVictims; i++){
+// for(var i=1; i<=numVictims; i++){
 
-	// console.log(i);
+// 	// console.log(i);
+
+// 	var victim = {};
+
+// 	victim.Name = prompt("Name of victim #" + i);
+// 	victim["Phone Number"] = prompt("Phone number of victim #" + i);
+// 	victim.Street = prompt("Street of victim #" + i);
+	
+// 	// console.log(victim);
+
+// 	victimArray.push(victim);
+// }
+
+// // console.log(victimArray[0]);
+// // console.log(victimArray[1]);
+
+// var numVolunteers;
+
+// while(isNaN(numVolunteers)){
+
+// numVolunteers = prompt("How many disaster volunteers do you have? ");
+
+// if(isNaN(numVolunteers)){
+// 	alert("Please use numerals.");
+// }
+
+// !isNaN(+numVolunteers);
+// }
+
+// // console.log(numVolunteers);
+
+// // Retrieve and Store Volunteer Information
+
+// // Declare empty volunteer arrays
+// 	var volunteerArray = [];
+
+// for(var i=1; i<=numVolunteers; i++){
+
+// 	// console.log(i);
+
+// 	var volunteer = {};
+
+// 	volunteer.Name = prompt("Name of volunteer #" + i);
+// 	volunteer["Phone Number"] = prompt("Phone number of volunteer #" + i);
+// 	volunteer.Street = prompt("Street of volunteer #" + i);
+	
+// 	// console.log(volunteer);
+
+// 	volunteerArray.push(volunteer);
+// }
+
+// // console.log(volunteerArray[0]);
+// // console.log(volunteerArray[1]);
+
+// var summaryMessage = "There are " + numVictims + " victims.\n"
+// 							+ "There are " + numVolunteers + " volunteers.\n";
+
+// for(var i=0; i<numVictims; i++){
+
+// 	summaryMessage += "Victim #" + (i+1) + ": \n";
+
+// 		for(key in victimArray[i]){
+// 			summaryMessage += "   " + key + ": " + victimArray[i][key] + "\n";
+// 		}
+	
+// }
+// for(var i=0; i<numVolunteers; i++){
+
+// 	summaryMessage += "Victim #" + (i+1) + ": \n";
+
+// 		for(key in volunteerArray[i]){
+// 			summaryMessage += "   " + key + ": " + volunteerArray[i][key] + "\n";
+// 		}
+// }
+
+// alert(summaryMessage);
+
+
+// -----------------------SOLUTION WITHOUT PREDETERMINED NUMBER OF VICTIMS OR VOLUNTEERS-------------------
+
+var moreVictims = confirm("Do you have disaster VICTIM info to enter? ");
+var victimArray = [];
+var victimCount = 0;
+
+// console.log(moreVictims);
+
+while(moreVictims){
+
+	victimCount++;
+
+	// console.log(victimCount);
 
 	var victim = {};
 
-	victim.Name = prompt("Name of victim #" + i);
-	victim["Phone Number"] = prompt("Phone number of victim #" + i);
-	victim.Street = prompt("Street of victim #" + i);
+	victim.Name = prompt("Name of victim #" + victimCount);
+	victim["Phone Number"] = prompt("Phone number of victim #" + victimCount);
+	victim.Street = prompt("Street of victim #" + victimCount);
 	
 	// console.log(victim);
 
 	victimArray.push(victim);
+
+	moreVictims = confirm("Do you have info for another victim? ");
 }
 
-// console.log(victimArray[0]);
-// console.log(victimArray[1]);
+// console.log(victimArray);
 
-var numVolunteers;
+var moreVolunteers = confirm("Do you have disaster VOLUNTEER info to enter? ");
+var volunteerArray = [];
+var volunteerCount = 0;
 
-while(isNaN(numVolunteers)){
+while(moreVolunteers){
 
-numVolunteers = prompt("How many disaster volunteers do you have? ");
+	volunteerCount++;
 
-if(isNaN(numVolunteers)){
-	alert("Please use numerals.");
-}
-
-!isNaN(+numVolunteers);
-}
-
-// console.log(numVolunteers);
-
-// Retrieve and Store Volunteer Information
-
-// Declare empty volunteer arrays
-	var volunteerArray = [];
-
-for(var i=1; i<=numVolunteers; i++){
-
-	// console.log(i);
+	// console.log(victimCount);
 
 	var volunteer = {};
 
-	volunteer.Name = prompt("Name of volunteer #" + i);
-	volunteer["Phone Number"] = prompt("Phone number of volunteer #" + i);
-	volunteer.Street = prompt("Street of volunteer #" + i);
+	volunteer.Name = prompt("Name of volunteer #" + volunteerCount);
+	volunteer["Phone Number"] = prompt("Phone number of volunteer #" + volunteerCount);
+	volunteer.Street = prompt("Street of volunteer #" + volunteerCount);
 	
 	// console.log(volunteer);
 
 	volunteerArray.push(volunteer);
+
+	moreVolunteers = confirm("Do you have info for another volunteer? ");
 }
 
-// console.log(volunteerArray[0]);
-// console.log(volunteerArray[1]);
+// console.log(volunteerArray);
 
-var summaryMessage = "There are " + numVictims + " victims.\n"
-							+ "There are " + numVolunteers + " volunteers.\n";
+var summaryMessage = "There are " + victimCount + " victims.\n"
+							+ "There are " + volunteerCount + " volunteers.\n";
 
-for(var i=0; i<numVictims; i++){
+for(var i=0; i<victimCount; i++){
 
 	summaryMessage += "Victim #" + (i+1) + ": \n";
 
-		for(key in victim){
+		for(key in victimArray[i]){
 			summaryMessage += "   " + key + ": " + victimArray[i][key] + "\n";
 		}
 	
 }
-for(var i=0; i<numVolunteers; i++){
+for(var i=0; i<volunteerCount; i++){
 
 	summaryMessage += "Victim #" + (i+1) + ": \n";
 
@@ -189,6 +267,7 @@ for(var i=0; i<numVolunteers; i++){
 }
 
 alert(summaryMessage);
+
 
 
 
