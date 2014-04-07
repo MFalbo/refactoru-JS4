@@ -167,11 +167,28 @@ for(var i=1; i<=numVolunteers; i++){
 // console.log(volunteerArray[0]);
 // console.log(volunteerArray[1]);
 
-alert("There are " + numVictims + " victims.\n"
-	+ "There are " + numVolunteers + " volunteers.\n"
-	+ "Victim #1: " + victimArray[0].Name + " " + victimArray[0].PhoneNumber + " " + victimArray[0].Street + "\n"
-	+ "Victim #2: " + victimArray[1].Name + " " + victimArray[1].PhoneNumber + " " + victimArray[1].Street + "\n"
-	+ "Volunteer #1: " + volunteerArray[0].Name + " " + volunteerArray[0].PhoneNumber + " " + volunteerArray[0].Street + "\n"
-	+ "Volunteer #2: " + volunteerArray[1].Name + " " + volunteerArray[1].PhoneNumber + " " + volunteerArray[1].Street + "\n");
+var summaryMessage = "There are " + numVictims + " victims.\n"
+							+ "There are " + numVolunteers + " volunteers.\n";
+
+for(var i=0; i<numVictims; i++){
+
+	summaryMessage += "Victim #" + (i+1) + ": \n" + 
+						"   Name: " + victimArray[i].Name + 
+						"\n   Phone Number: " + victimArray[i].PhoneNumber +
+						"\n   Street: " + victimArray[i].Street + "\n"
+	
+}
+for(var i=0; i<numVolunteers; i++){
+
+	summaryMessage += "Volunteer #" + (i+1) + ": \n" + 
+						"   Name: " + volunteerArray[i].Name + 
+						"\n   Phone Number: " + volunteerArray[i].PhoneNumber +
+						"\n   Street: " + volunteerArray[i].Street + "\n"
+	
+}
+
+alert(summaryMessage);
+
+
 
 
