@@ -118,7 +118,7 @@ for(var i=1; i<=numVictims; i++){
 	var victim = {};
 
 	victim.Name = prompt("Name of victim #" + i);
-	victim.PhoneNumber = prompt("Phone number of victim #" + i);
+	victim["Phone Number"] = prompt("Phone number of victim #" + i);
 	victim.Street = prompt("Street of victim #" + i);
 	
 	// console.log(victim);
@@ -156,7 +156,7 @@ for(var i=1; i<=numVolunteers; i++){
 	var volunteer = {};
 
 	volunteer.Name = prompt("Name of volunteer #" + i);
-	volunteer.PhoneNumber = prompt("Phone number of volunteer #" + i);
+	volunteer["Phone Number"] = prompt("Phone number of volunteer #" + i);
 	volunteer.Street = prompt("Street of volunteer #" + i);
 	
 	// console.log(volunteer);
@@ -172,19 +172,20 @@ var summaryMessage = "There are " + numVictims + " victims.\n"
 
 for(var i=0; i<numVictims; i++){
 
-	summaryMessage += "Victim #" + (i+1) + ": \n" + 
-						"   Name: " + victimArray[i].Name + 
-						"\n   Phone Number: " + victimArray[i].PhoneNumber +
-						"\n   Street: " + victimArray[i].Street + "\n"
+	summaryMessage += "Victim #" + (i+1) + ": \n";
+
+		for(key in victim){
+			summaryMessage += "   " + key + ": " + victimArray[i][key] + "\n";
+		}
 	
 }
 for(var i=0; i<numVolunteers; i++){
 
-	summaryMessage += "Volunteer #" + (i+1) + ": \n" + 
-						"   Name: " + volunteerArray[i].Name + 
-						"\n   Phone Number: " + volunteerArray[i].PhoneNumber +
-						"\n   Street: " + volunteerArray[i].Street + "\n"
-	
+	summaryMessage += "Victim #" + (i+1) + ": \n";
+
+		for(key in volunteerArray[i]){
+			summaryMessage += "   " + key + ": " + volunteerArray[i][key] + "\n";
+		}
 }
 
 alert(summaryMessage);
