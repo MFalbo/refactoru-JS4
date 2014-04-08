@@ -259,7 +259,7 @@ for(var i=0; i<victimCount; i++){
 }
 for(var i=0; i<volunteerCount; i++){
 
-	summaryMessage += "Victim #" + (i+1) + ": \n";
+	summaryMessage += "Volunteer #" + (i+1) + ": \n";
 
 		for(key in volunteerArray[i]){
 			summaryMessage += "   " + key + ": " + volunteerArray[i][key] + "\n";
@@ -268,7 +268,36 @@ for(var i=0; i<volunteerCount; i++){
 
 alert(summaryMessage);
 
+var personInNeed = prompt("Enter the name of a person in need. ");
+var volunteersAvail = [];
+var responderMessage = "The following volunteers are available on your victim's street: \n";
 
+for(var i=0; i<victimCount; i++){
+			// console.log("In for loop 1");
+	if(personInNeed === victimArray[i]["Name"]){
+			// console.log("In if statement 1");
+		var streetInNeed = victimArray[i]["Street"];
+			// console.log(victimArray[i]["Street"]);
+	
+		for(var i=0; i<volunteerCount; i++){
+				// console.log("In for loop 2");
+				// console.log(volunteerArray[i]["Street"]);
+			if(streetInNeed === volunteerArray[i]["Street"]){
+				// console.log("In for loop 2");
+				// console.log(volunteerArray[i]["Name"]);
+
+				responderMessage += "   " + volunteerArray[i]["Name"] + "\n";
+			}
+			else{
+				responderMessage += "No volunteers available on " + victimArray[i]["Name"] + "'s street."; 
+			}
+		}
+
+	}
+
+}
+
+alert(responderMessage);
 
 
 
