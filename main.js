@@ -193,32 +193,144 @@
 
 // -----------------------SOLUTION WITHOUT PREDETERMINED NUMBER OF VICTIMS OR VOLUNTEERS-------------------
 
+// var moreVictims = confirm("Do you have disaster VICTIM info to enter? ");
+// var victimArray = [];
+// var victimCount = 0;
+
+// // console.log(moreVictims);
+
+// while(moreVictims){
+
+// 	victimCount++;
+
+// 	// console.log(victimCount);
+
+// 	var victim = {};
+
+// 	victim.Name = prompt("Name of victim #" + victimCount);
+// 	victim["Phone Number"] = prompt("Phone number of victim #" + victimCount);
+// 	victim.Street = prompt("Street of victim #" + victimCount);
+	
+// 	// console.log(victim);
+
+// 	victimArray.push(victim);
+
+// 	moreVictims = confirm("Do you have info for another victim? ");
+// }
+
+// // console.log(victimArray);
+
+// var moreVolunteers = confirm("Do you have disaster VOLUNTEER info to enter? ");
+// var volunteerArray = [];
+// var volunteerCount = 0;
+
+// while(moreVolunteers){
+
+// 	volunteerCount++;
+
+// 	// console.log(victimCount);
+
+// 	var volunteer = {};
+
+// 	volunteer.Name = prompt("Name of volunteer #" + volunteerCount);
+// 	volunteer["Phone Number"] = prompt("Phone number of volunteer #" + volunteerCount);
+// 	volunteer.Street = prompt("Street of volunteer #" + volunteerCount);
+	
+// 	// console.log(volunteer);
+
+// 	volunteerArray.push(volunteer);
+
+// 	moreVolunteers = confirm("Do you have info for another volunteer? ");
+// }
+
+// // console.log(volunteerArray);
+
+// var summaryMessage = "There are " + victimCount + " victims.\n"
+// 							+ "There are " + volunteerCount + " volunteers.\n";
+
+// for(var i=0; i<victimCount; i++){
+
+// 	summaryMessage += "Victim #" + (i+1) + ": \n";
+
+// 		for(key in victimArray[i]){
+// 			summaryMessage += "   " + key + ": " + victimArray[i][key] + "\n";
+// 		}
+	
+// }
+// for(var i=0; i<volunteerCount; i++){
+
+// 	summaryMessage += "Volunteer #" + (i+1) + ": \n";
+
+// 		for(key in volunteerArray[i]){
+// 			summaryMessage += "   " + key + ": " + volunteerArray[i][key] + "\n";
+// 		}
+// }
+
+// alert(summaryMessage);
+
+// var personInNeed = prompt("Enter the name of a person in need. ");
+// var volunteersAvail = [];
+// var responderMessage = "The following volunteers are available on your victim's street: \n";
+
+// for(var i=0; i<victimCount; i++){
+// 			// console.log("In for loop 1");
+// 	if(personInNeed === victimArray[i]["Name"]){
+// 			// console.log("In if statement 1");
+// 		var streetInNeed = victimArray[i]["Street"];
+// 			// console.log(victimArray[i]["Street"]);
+	
+// 		for(var i=0; i<volunteerCount; i++){
+// 				// console.log("In for loop 2");
+// 				// console.log(volunteerArray[i]["Street"]);
+// 			if(streetInNeed === volunteerArray[i]["Street"]){
+// 				// console.log("In for loop 2");
+// 				// console.log(volunteerArray[i]["Name"]);
+
+// 				responderMessage += "   " + volunteerArray[i]["Name"] + "\n";
+// 			}
+// 			else{
+// 				responderMessage += "No volunteers available on " + victimArray[i]["Name"] + "'s street."; 
+// 			}
+// 		}
+
+// 	}
+
+// }
+
+// alert(responderMessage);
+
+
+// -----------------------------------Solution Refactored using functions-------------------------------
+
+
 var moreVictims = confirm("Do you have disaster VICTIM info to enter? ");
 var victimArray = [];
 var victimCount = 0;
 
-// console.log(moreVictims);
+
+function personCreator(count, type){
+	var person = {};
+
+	person.Name = prompt("Name of " + type + "#" + count);
+	person["Phone Number"] = prompt("Phone number of " + type + "#" + count);
+	person.Street = prompt("Street of " + type + "#" + count);
+
+	return person;
+}
 
 while(moreVictims){
 
 	victimCount++;
 
-	// console.log(victimCount);
-
-	var victim = {};
-
-	victim.Name = prompt("Name of victim #" + victimCount);
-	victim["Phone Number"] = prompt("Phone number of victim #" + victimCount);
-	victim.Street = prompt("Street of victim #" + victimCount);
 	
-	// console.log(victim);
+	currentVictim = personCreator(victimCount, "victim");
 
-	victimArray.push(victim);
+	victimArray.push(currentVictim);
+
 
 	moreVictims = confirm("Do you have info for another victim? ");
 }
 
-// console.log(victimArray);
 
 var moreVolunteers = confirm("Do you have disaster VOLUNTEER info to enter? ");
 var volunteerArray = [];
@@ -228,49 +340,45 @@ while(moreVolunteers){
 
 	volunteerCount++;
 
-	// console.log(victimCount);
 
-	var volunteer = {};
-
-	volunteer.Name = prompt("Name of volunteer #" + volunteerCount);
-	volunteer["Phone Number"] = prompt("Phone number of volunteer #" + volunteerCount);
-	volunteer.Street = prompt("Street of volunteer #" + volunteerCount);
+	currentVolunteer = personCreator(volunteerCount, "volunteer");
 	
-	// console.log(volunteer);
 
-	volunteerArray.push(volunteer);
+	volunteerArray.push(currentVolunteer);
+
 
 	moreVolunteers = confirm("Do you have info for another volunteer? ");
 }
 
-// console.log(volunteerArray);
 
 var summaryMessage = "There are " + victimCount + " victims.\n"
 							+ "There are " + volunteerCount + " volunteers.\n";
 
-for(var i=0; i<victimCount; i++){
 
-	summaryMessage += "Victim #" + (i+1) + ": \n";
+function messageCreator(type, typeCount, typeArray, summaryMessage){
 
-		for(key in victimArray[i]){
-			summaryMessage += "   " + key + ": " + victimArray[i][key] + "\n";
-		}
-	
+	for(var i=0; i<typeCount; i++){
+
+		summaryMessage += type + "#" + (i+1) + ": \n";
+
+			for(key in typeArray[i]){
+				summaryMessage += "   " + key + ": " + typeArray[i][key] + "\n";
+			}	
+	}
+
+	return summaryMessage;
+
 }
-for(var i=0; i<volunteerCount; i++){
 
-	summaryMessage += "Volunteer #" + (i+1) + ": \n";
-
-		for(key in volunteerArray[i]){
-			summaryMessage += "   " + key + ": " + volunteerArray[i][key] + "\n";
-		}
-}
+summaryMessage = messageCreator("Victim", victimCount, victimArray, summaryMessage);
+summaryMessage = messageCreator("Volunteer", volunteerCount, volunteerArray, summaryMessage);
 
 alert(summaryMessage);
 
 var personInNeed = prompt("Enter the name of a person in need. ");
 var volunteersAvail = [];
 var responderMessage = "The following volunteers are available on your victim's street: \n";
+
 
 for(var i=0; i<victimCount; i++){
 			// console.log("In for loop 1");
@@ -288,9 +396,9 @@ for(var i=0; i<victimCount; i++){
 
 				responderMessage += "   " + volunteerArray[i]["Name"] + "\n";
 			}
-			else{
-				responderMessage += "No volunteers available on " + victimArray[i]["Name"] + "'s street."; 
-			}
+			// else{
+			// 	responderMessage += "No volunteers available on " + victimArray[i]["Name"] + "'s street."; 
+			// }
 		}
 
 	}
@@ -298,6 +406,4 @@ for(var i=0; i<victimCount; i++){
 }
 
 alert(responderMessage);
-
-
 
